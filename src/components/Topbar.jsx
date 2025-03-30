@@ -1,10 +1,16 @@
 import { FaUser, FaChevronDown, FaChevronUp, FaCreditCard, FaSignOutAlt } from "react-icons/fa";
 import { useState } from "react";
 import { appConfig } from "../config/appConfig";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }) => {
+  // State for toggling the user dropdown
   const [isUserBoxOpen, setIsUserBoxOpen] = useState(false);
 
+  // Auth0 hooks
+  const { user, isAuthenticated, logout } = useAuth0();
+
+  // Toggle the user options dropdown
   const toggleUserBox = () => setIsUserBoxOpen(!isUserBoxOpen);
 
   return (
@@ -15,22 +21,23 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
         style={{ 
           height: "var(--topbar-height)",
           backgroundColor: "var(--color-topbar)",
-         }}
+        }}
       >
+        {/* Logo */}
         <a href="/">
           <img src={appConfig.logoUrl} alt={appConfig.appName} className="h-15" />
         </a>
 
+        {/* User Dropdown */}
         <div className="relative mr-[40px]">
           <button
             onClick={toggleUserBox}
             className="flex items-center gap-2 text-sm text-gray-300 hover:text-white focus:outline-none px-3 py-1 rounded shadow-none border-none"
-            style={{ 
-              backgroundColor: "var(--color-topbar)",
-             }}
+            style={{ backgroundColor: "var(--color-topbar)" }}
           >
             <FaUser />
-            Minas Demosthenous
+            {/* Show Auth0 user's name if logged in, else show fallback */}
+            {isAuthenticated && user ? user.name : "Guest User"}
             {isUserBoxOpen ? (
               <FaChevronUp className="transition-transform" />
             ) : (
@@ -47,12 +54,14 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
                 <div className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition">
                   <FaCreditCard /> <span>Billing</span>
                 </div>
+                {/* Auth0 Logout */}
                 <div
                   className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition"
-                  onClick={() => {
-                    localStorage.removeItem("authenticated");
-                    window.location.href = "/";
-                  }}
+                  onClick={() =>
+                    logout({
+                      returnTo: window.location.origin,
+                    })
+                  }
                 >
                   <FaSignOutAlt />
                   <span>Logout</span>
@@ -71,6 +80,7 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
           height: "var(--topbar-height)",
         }}
       >
+        {/* Sidebar Toggle */}
         <div className="w-6 flex justify-center items-center">
           <button
             onClick={toggleSidebar}
@@ -79,6 +89,8 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
             <FaUser className="text-sm" />
           </button>
         </div>
+
+        {/* Breadcrumb */}
         <div
           className="flex-1 pr-4 transition-all duration-10 relative"
           style={{ paddingLeft: isSidebarCollapsed ? "2rem" : "15rem" }}
@@ -87,6 +99,8 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
             {breadcrumb || "Dashboard"}
           </span>
         </div>
+
+        {/* Help Button */}
         <div className="w-48 flex justify-end">
           <button className="w-20 border-none bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-2 flex items-center justify-center gap-2">
             <span className="bg-white text-green-600 rounded-full w-3.5 h-3.5 flex items-center justify-center text-xs font-bold">?</span>
@@ -106,7 +120,7 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
         <div
           className="absolute h-[3px] bg-blue-500"
           style={{ transition: "left 0.01s ease, width 0.01s ease" }}
-        ></div>
+        />
       </div>
     </>
   );
