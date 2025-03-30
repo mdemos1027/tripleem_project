@@ -1,0 +1,25 @@
+:root {
+  --topbar-height: 56px;
+  --sidebar-width: 256px;
+  --sidebar-expanded-width: 256px;
+  --sidebar-collapsed-width: 48px;
+  --color-selector: #1a84fe;
+  --color-topbar: #121228  ;
+  --color-secondbar: #07071c;
+  --color-sidebar: #0a1634;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #c1df13;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
