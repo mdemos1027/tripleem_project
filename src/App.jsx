@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState, useEffect } from "react";  // Added useState and useEffect
 
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
@@ -28,11 +29,26 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-  
+
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
 function App() {
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [username, setUsername] = useState(localStorage.getItem("username") || "");
+  const [userRole, setUserRole] = useState(localStorage.getItem("userRole") || "");
+
+  useEffect(() => {
+    // Check localStorage for user-related information
+    const storedEmail = localStorage.getItem("email");
+    const storedUsername = localStorage.getItem("username");
+    const storedUserRole = localStorage.getItem("userRole");
+
+    if (storedEmail) setEmail(storedEmail);
+    if (storedUsername) setUsername(storedUsername);
+    if (storedUserRole) setUserRole(storedUserRole);
+  }, []); // Runs only once when the app is loaded
+
   return (
     <Router>
       <Routes>
@@ -44,7 +60,7 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <MainLayout />
+              <MainLayout email={email} username={username} userRole={userRole} />
             </ProtectedRoute>
           }
         >
