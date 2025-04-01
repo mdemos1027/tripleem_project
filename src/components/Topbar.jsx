@@ -1,5 +1,5 @@
 import { FaUser, FaChevronDown, FaChevronUp, FaCreditCard, FaSignOutAlt } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { appConfig } from "../config/appConfig";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -7,8 +7,24 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
   // State for toggling the user dropdown
   const [isUserBoxOpen, setIsUserBoxOpen] = useState(false);
 
+  // State to store user data from localStorage
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [userRole, setUserRole] = useState("");
+
   // Auth0 hooks
   const { user, isAuthenticated, logout } = useAuth0();
+
+  // Load data from localStorage if available
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedUsername = localStorage.getItem("username");
+    const storedUserRole = localStorage.getItem("userRole");
+
+    if (storedEmail) setEmail(storedEmail);
+    if (storedUsername) setUsername(storedUsername);
+    if (storedUserRole) setUserRole(storedUserRole);
+  }, []);
 
   // Toggle the user options dropdown
   const toggleUserBox = () => setIsUserBoxOpen(!isUserBoxOpen);
@@ -54,6 +70,22 @@ const Topbar = ({ breadcrumbRef, breadcrumb, toggleSidebar, isSidebarCollapsed }
                 <div className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition">
                   <FaCreditCard /> <span>Billing</span>
                 </div>
+                {/* Display the email, username, and role */}
+                {email && (
+                  <div className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition">
+                    <span className="font-semibold">Email:</span> <span>{email}</span>
+                  </div>
+                )}
+                {username && (
+                  <div className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-green-300 hover:bg-blue-600 hover:text-white transition">
+                    <span className="font-semibold">Username:</span> <span>{username}</span>
+                  </div>
+                )}
+                {userRole && (
+                  <div className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition">
+                    <span className="font-semibold">Role:</span> <span>{userRole}</span>
+                  </div>
+                )}
                 {/* Auth0 Logout */}
                 <div
                   className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition"
