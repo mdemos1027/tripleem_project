@@ -49,12 +49,12 @@ const navItems = [
     ],
   },
   {
-    label: "ChatGPT",
+    label: "AI Agent",
     icon: <FaTachometerAlt />,
     children: [
-      { path: "/chatgpt/workspace", label: "Workspace" },
-      { path: "/chatgpt/integration", label: "Integration" },
-      { path: "/chatgpt/settingsnew", label: "SettingsNew" },
+      { path: "/aiagent/workspace", label: "Workspace" },
+      { path: "/aiagent/integration", label: "Integration" },
+      { path: "/aiagent/settingsnew", label: "SettingsNew" },
     ],
   },
 ];

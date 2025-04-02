@@ -10,7 +10,7 @@ const Integration = () => {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">ChatGPT Integration</h2>
+      <h2 className="text-xl font-semibold">AI Agent Integration</h2>
       <input
         type="password"
         className="w-full p-2 text-black rounded"

@@ -11,7 +11,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain="dev-fzyagrbf0abxq7sy.us.auth0.com"
       clientId="71eSwGDrZV3MyI2t0CY1lVQoUz4OOCun"
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri: window.location.origin,
+        audience: "https://dev-fzyagrbf0abxq7sy.us.auth0.com/api/v2/",
+        scope: "openid profile email read:roles offline_access",
+        prompt: "login" // Force fresh login each time for testing
+      }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true}
+      onRedirectCallback={(appState) => {
+        console.log('Auth0 Redirect Callback:', appState);
       }}
     >
       <App />
