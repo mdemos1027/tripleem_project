@@ -151,10 +151,10 @@ function App() {
           <Route path="reports" element={<Reports />} />
 
           <Route index element={<HelpCenterLayout />} />
-          <Route path="knowledgebase" element={<KnowledgeBase />} />
-          <Route path="faq" element={<FAQ />} />
-          <Route path="videotutorials" element={<VideoTutorials />} />
-          <Route path="contact" element={<ContactSupport />} />
+          <Route path="helpcenter/knowledgebase" element={<KnowledgeBase />} />
+          <Route path="helpcenter/faq" element={<FAQ />} />
+          <Route path="helpcenter/videotutorials" element={<VideoTutorials />} />
+          <Route path="helpcenter/contactsupport" element={<ContactSupport />} />
           
 
          

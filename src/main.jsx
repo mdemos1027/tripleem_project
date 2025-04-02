@@ -1,26 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Auth0Provider } from "@auth0/auth0-react";
-import App from "./App";
-import "uno.css";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Auth0Provider } from '@auth0/auth0-react';
+import App from './App';
+import 'uno.css';
+import './index.css';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev-fzyagrbf0abxq7sy.us.auth0.com"
-      clientId="71eSwGDrZV3MyI2t0CY1lVQoUz4OOCun"
+      domain={import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: "https://dev-fzyagrbf0abxq7sy.us.auth0.com/api/v2/",
-        scope: "openid profile email read:roles offline_access",
-        prompt: "login" // Force fresh login each time for testing
+        // audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+        // scope: import.meta.env.VITE_AUTH0_SCOPE
       }}
-      cacheLocation="localstorage"
-      useRefreshTokens={true}
-      onRedirectCallback={(appState) => {
-        console.log('Auth0 Redirect Callback:', appState);
-      }}
+      // cacheLocation="localstorage" // Persists auth state
+      // useRefreshTokens={true} // Enables silent auth
     >
       <App />
     </Auth0Provider>

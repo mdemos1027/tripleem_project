@@ -34,10 +34,10 @@ const navItems = [
     label: "Help Center",
     icon: <FaQuestionCircle />,
     children: [
-      { path: "/HelpCenter/knowledgebase", label: "Knowledge Base" },
-      { path: "/HelpCenter/faq", label: "FAQ" },
-      { path: "/HelpCenter/videotutorials", label: "Video Tutorials" },
-      { path: "/HelpCenter/contactsupport", label: "Contact Support" },
+      { path: "/helpcenter/knowledgebase", label: "Knowledge Base" },
+      { path: "/helpcenter/faq", label: "FAQ" },
+      { path: "/helpcenter/videotutorials", label: "Video Tutorials" },
+      { path: "/helpcenter/contactsupport", label: "Contact Support" },
     ],
   },
   {
