@@ -18,6 +18,12 @@ import SettingsNew from './pages/AIAgent/SettingsNew';
 import Login from "./pages/Login";
 import Register from './pages/Register';
 import Settings from './pages/Settings';
+// Add this import at the top with other imports
+import HelpCenterLayout from './pages/HelpCenter/HelpCenterLayout';
+import ContactSupport from './pages/HelpCenter/ContactSupport';
+import FAQ from './pages/HelpCenter/FAQ';
+import KnowledgeBase from './pages/HelpCenter/KnowledgeBase';
+import VideoTutorials from './pages/HelpCenter/VideoTutorials';
 
 /**
  * Enhanced ProtectedRoute with:
@@ -143,6 +149,14 @@ function App() {
           <Route path="history" element={<History />} />
          
           <Route path="reports" element={<Reports />} />
+
+          <Route index element={<HelpCenterLayout />} />
+          <Route path="knowledgebase" element={<KnowledgeBase />} />
+          <Route path="faq" element={<FAQ />} />
+          <Route path="videotutorials" element={<VideoTutorials />} />
+          <Route path="contact" element={<ContactSupport />} />
+          
+
          
           <Route path="settings" element={<Settings />} />
           
@@ -162,7 +176,7 @@ function App() {
           <Route 
             path="aiagent/settingsnew" 
             element={
-              <ProtectedRoute requiredRoles={['admin']}>
+              <ProtectedRoute requiredRoles={['Admin']}>
                 <SettingsNew />
               </ProtectedRoute>
             } 
@@ -170,7 +184,7 @@ function App() {
           <Route 
             path="aiagent/integration" 
             element={
-              <ProtectedRoute requiredRoles={['admin']}>
+              <ProtectedRoute requiredRoles={['Admin']}>
                 <Integration />
               </ProtectedRoute>
             } 
