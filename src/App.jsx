@@ -17,13 +17,16 @@ import Integration from './pages/AIAgent/Integration';
 import SettingsNew from './pages/AIAgent/SettingsNew';
 import Login from "./pages/Login";
 import Register from './pages/Register';
-import Settings from './pages/Settings';
 // Add this import at the top with other imports
 import HelpCenterLayout from './pages/HelpCenter/HelpCenterLayout';
 import ContactSupport from './pages/HelpCenter/ContactSupport';
 import FAQ from './pages/HelpCenter/FAQ';
 import KnowledgeBase from './pages/HelpCenter/KnowledgeBase';
 import VideoTutorials from './pages/HelpCenter/VideoTutorials';
+import CRMDatabasesCredentials from './pages/Configuration/CRMDatabasesCredentials';
+import PlatformsCredentials from './pages/Configuration/PlatformsCredentials';
+import ConfigurationSettings from './pages/Configuration/Settings';
+import ConfigurationTest1 from './pages/Configuration/Test1';
 
 /**
  * Enhanced ProtectedRoute with:
@@ -158,7 +161,10 @@ function App() {
           
 
          
-          <Route path="settings" element={<Settings />} />
+          <Route path="configuration/crmdatabasescredentials" element={<CRMDatabasesCredentials />} />
+          <Route path="configuration/platformscredentials" element={<PlatformsCredentials />} />
+          <Route path="configuration/settings" element={<ConfigurationSettings />} />
+          <Route path="configuration/test1" element={<ConfigurationTest1 />} />
           
           {/* Test Routes */}
           <Route path="test1/test11" element={<Test11 />} />

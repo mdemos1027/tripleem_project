@@ -21,7 +21,16 @@ const Sidebar = ({ isSidebarCollapsed, setIsSidebarCollapsed }) => {
       ],
     },
     { path: "/reports", label: "Reports", icon: <FaFileAlt /> },
-    { path: "/settings", label: "Settings", icon: <FaCog /> },
+    
+    
+      { path: "/configuration/crmdatabasescredentials", label: "CRM Databases Credentials" },
+      { path: "/configuration/platformscredentials", label: "Platforms Credentials" },
+      { path: "/configuration/settings", label: "Settings" },
+      { path: "/configuration/test1", label: "Test1" },
+    
+  
+    
+    
     {
       label: "Help Center",
       icon: <FaQuestionCircle />,
