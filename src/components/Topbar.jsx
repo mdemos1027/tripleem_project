@@ -96,6 +96,7 @@ const Topbar = ({
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center gap-3 text-sm text-gray-300 hover:text-white focus:outline-none px-3 py-2 rounded-md border-none"
+              style={{ backgroundColor: "var(--color-topbar)" }}
             >
               <WorldFlag
                 code={languages.find((lang) => lang.code === language)?.flag}
@@ -106,7 +107,7 @@ const Topbar = ({
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-black-300 shadow-lg rounded-md z-50">
+              <div className="absolute right-0 mt-2 w-34 bg-gray-800 shadow-lg rounded-md z-50">
                 <div className="p-2 space-y-1">
                   {languages.map((lang) => (
                     <button
