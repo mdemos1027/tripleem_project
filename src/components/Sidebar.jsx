@@ -41,14 +41,7 @@ const Sidebar = ({ isSidebarCollapsed, setIsSidebarCollapsed }) => {
         { path: "/HelpCenter/contactsupport", label: "Contact Support" },
       ],
     },
-    {
-      label: "Test1",
-      icon: <FaTachometerAlt />,
-      children: [
-        { path: "/test1/test11", label: "Test11" },
-        { path: "/test1/test12", label: "Test12" },
-      ],
-    },
+    
     {
       label: "Test2",
       icon: <FaTachometerAlt />,

@@ -10,8 +10,6 @@ import Trades from "./pages/Trades";
 import Analysis from "./pages/Analysis";
 import History from "./pages/History";
 import Reports from "./pages/Reports";
-import Test11 from './pages/test1/Test11';
-import Test12 from './pages/test1/Test12';
 import Workspace from './pages/AIAgent/Workspace';
 import Integration from './pages/AIAgent/Integration';
 import SettingsNew from './pages/AIAgent/SettingsNew';
@@ -169,9 +167,6 @@ function App() {
             <Route path="configuration/settings" element={<ConfigurationSettings />} />
             <Route path="configuration/test1" element={<ConfigurationTest1 />} />
 
-            {/* Test Routes */}
-            <Route path="test1/test11" element={<Test11 />} />
-            <Route path="test1/test12" element={<Test12 />} />
 
             {/* Admin Routes */}
             <Route 
