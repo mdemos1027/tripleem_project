@@ -110,17 +110,17 @@ const Topbar = ({
               <div className="absolute right-0 mt-2 w-34 bg-gray-800 shadow-lg rounded-md z-50">
                 <div className="p-2 space-y-1">
                   {languages.map((lang) => (
-                    <button
+                    <div
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition"
+                      className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer bg-gray-800 text-gray-300 hover:bg-blue-600 hover:text-white transition"
                     >
                       <WorldFlag
                         code={lang.flag}
                         style={{ width: "20px", marginRight: "8px" }}
                       />
                       <span>{lang.label}</span>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -158,13 +158,13 @@ const Topbar = ({
                   {localUser.role && <UserInfo label="Role" value={localUser.role} />}
 
                   {/* Logout Button */}
-                  <button
+                  <div
                     onClick={() => logout({ returnTo: window.location.origin })}
-                    className="w-full flex items-center gap-2 px-3 py-2 rounded cursor-pointer text-gray-300 hover:bg-blue-600 hover:text-white transition"
+                    className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-blue-600 hover:text-white cursor-pointer transition"
                   >
                     <FaSignOutAlt />
                     {getTranslatedLabel("logout")} {/* Translated Logout */}
-                  </button>
+                  </div>
                 </div>
               </div>
             )}
