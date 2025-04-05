@@ -21,6 +21,10 @@ export const translations = {
       aiAgent: "AI Agent",
       workspace: "Workspace",
       integration: "Integration",
+      profile: "Profile",  // Added translation for Profile
+      billing: "Billing",  // Added translation for Billing
+      logout: "Logout",    // Added translation for Logout
+      help: "Help",        // Added translation for Help
     },
     fr: {
       dashboard: "Tableau de bord",
@@ -42,7 +46,37 @@ export const translations = {
       aiAgent: "Agent IA",
       workspace: "Espace de travail",
       integration: "Intégration",
+      profile: "Profil",  // French translation for Profile
+      billing: "Facturation",  // French translation for Billing
+      logout: "Déconnexion",    // French translation for Logout
+      help: "Aide",        // French translation for Help
     },
+
+    zh: {
+        dashboard: "仪表盘",
+        accounts: "账户",
+        trades: "交易",
+        analysis: "分析",
+        history: "历史",
+        reports: "报告",
+        configuration: "配置",
+        crmDatabasesCredentials: "CRM数据库凭证",
+        platformsCredentials: "平台凭证",
+        settings: "设置",
+        permissions: "权限",
+        helpCenter: "帮助中心",
+        knowledgeBase: "知识库",
+        faq: "常见问题",
+        videoTutorials: "视频教程",
+        contactSupport: "联系支持",
+        aiAgent: "AI代理",
+        workspace: "工作区",
+        integration: "集成",
+        profile: "个人资料",
+        billing: "账单",
+        logout: "登出",
+        help: "帮助"
+    }
     // Add other languages here if needed
   };
   

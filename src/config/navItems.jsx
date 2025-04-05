@@ -1,8 +1,8 @@
 // src/components/NavItems.jsx
 import React from "react";
 import { FaTachometerAlt, FaFileAlt, FaCog, FaQuestionCircle } from "react-icons/fa";
-import { useLanguage } from "../context/LanguageContext.jsx";  // Adjust the path as necessary
-import { translations } from "../translations";  // Adjust the path as necessary
+import { useLanguage } from "../context/LanguageContext.jsx";  // Correct import
+import { translations } from "../translations";  // Correct import
 
 export const navItems = [
   {
@@ -49,7 +49,7 @@ export const navItems = [
 ];
 
 const NavItems = () => {
-  const { language } = useLanguage();
+  const { language } = useLanguage(); // Get the current language from context
 
   // Helper function to get translated label based on current language
   const getTranslatedLabel = (key) => {

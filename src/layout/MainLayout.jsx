@@ -1,8 +1,9 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import Topbar from "../components/Topbar";
-// src/layouts/MainLayout.js
 import { navItems } from "../config/navItems.jsx";
+import { useLanguage } from "../context/LanguageContext";  // Import the language context
+import { translations } from "../translations";  // Import translations
 
 import {
   FaTachometerAlt,
@@ -13,25 +14,29 @@ import {
   FaQuestionCircle
 } from "react-icons/fa";
 
-
-
 const MainLayout = () => {
+  const { language } = useLanguage(); // Get current language from context
   const location = useLocation();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const breadcrumbRef = useRef(null);
   const indicatorRef = useRef(null);
+
+  // Helper function to get translated label based on current language
+  const getTranslatedLabel = (key) => {
+    return translations[language][key] || key;  // Return translated label or fallback to key
+  };
 
   // Calculate current breadcrumb path
   const getBreadcrumb = () => {
     for (const item of navItems) {
       if (item.children) {
         const child = item.children.find(c => c.path === location.pathname);
-        if (child) return `${item.label} / ${child.label}`;
+        if (child) return `${getTranslatedLabel(item.label)} / ${getTranslatedLabel(child.label)}`;
       } else if (item.path === location.pathname) {
-        return item.label;
+        return getTranslatedLabel(item.label);
       }
     }
-    return "Dashboard";
+    return getTranslatedLabel("dashboard"); // Default breadcrumb
   };
 
   // Check if path is active
@@ -83,7 +88,7 @@ const MainLayout = () => {
                     <summary className={`flex items-center justify-between px-3 h-[30px] py-2 text-sm font-medium rounded hover:bg-gray-700 cursor-pointer ${active ? 'text-white font-semibold' : 'text-white'}`}>
                       <span className="flex items-center">
                         {item.icon}
-                        {!isSidebarCollapsed && <span className="ml-2">{item.label}</span>}
+                        {!isSidebarCollapsed && <span className="ml-2">{getTranslatedLabel(item.label)}</span>}
                       </span>
                       {!isSidebarCollapsed && (
                         <span className="transition-transform group-open:rotate-180">
@@ -108,7 +113,7 @@ const MainLayout = () => {
                             <span className="inline-block w-5 h-[20px] text-center">
                               <FaTachometerAlt />
                             </span>
-                            <span className="ml-2">{child.label}</span>
+                            <span className="ml-2">{getTranslatedLabel(child.label)}</span>
                           </NavLink>
                         ))}
                       </div>
@@ -125,7 +130,7 @@ const MainLayout = () => {
                     }
                   >
                     {item.icon}
-                    {!isSidebarCollapsed && <span className="ml-2">{item.label}</span>}
+                    {!isSidebarCollapsed && <span className="ml-2">{getTranslatedLabel(item.label)}</span>}
                   </NavLink>
                 )}
               </div>
