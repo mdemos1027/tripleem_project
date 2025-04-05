@@ -1,0 +1,48 @@
+// src/translations.js
+
+export const translations = {
+    en: {
+      dashboard: "Dashboard",
+      accounts: "Accounts",
+      trades: "Trades",
+      analysis: "Analysis",
+      history: "History",
+      reports: "Reports",
+      configuration: "Configuration",
+      crmDatabasesCredentials: "CRM Databases Credentials",
+      platformsCredentials: "Platforms Credentials",
+      settings: "Settings",
+      permissions: "Permissions",
+      helpCenter: "Help Center",
+      knowledgeBase: "Knowledge Base",
+      faq: "FAQ",
+      videoTutorials: "Video Tutorials",
+      contactSupport: "Contact Support",
+      aiAgent: "AI Agent",
+      workspace: "Workspace",
+      integration: "Integration",
+    },
+    fr: {
+      dashboard: "Tableau de bord",
+      accounts: "Comptes",
+      trades: "Transactions",
+      analysis: "Analyse",
+      history: "Historique",
+      reports: "Rapports",
+      configuration: "Configuration",
+      crmDatabasesCredentials: "Identifiants des bases de données CRM",
+      platformsCredentials: "Identifiants des plateformes",
+      settings: "Paramètres",
+      permissions: "Autorisations",
+      helpCenter: "Centre d'aide",
+      knowledgeBase: "Base de connaissances",
+      faq: "FAQ",
+      videoTutorials: "Tutoriels vidéo",
+      contactSupport: "Contacter le support",
+      aiAgent: "Agent IA",
+      workspace: "Espace de travail",
+      integration: "Intégration",
+    },
+    // Add other languages here if needed
+  };
+  

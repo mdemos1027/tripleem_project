@@ -28,6 +28,10 @@ import PlatformsCredentials from './pages/Configuration/PlatformsCredentials';
 import ConfigurationSettings from './pages/Configuration/Settings';
 import ConfigurationTest1 from './pages/Configuration/Test1';
 
+// Import LanguageProvider
+import { LanguageProvider } from "./context/LanguageContext";  // Ensure the path is correct
+
+
 /**
  * Enhanced ProtectedRoute with:
  * - Authentication check
@@ -117,90 +121,90 @@ function App() {
   }, [user, isAuthenticated, isLoading]);
 
   return (
-    <Router>
-      {/* Debug Banner (visible only in development) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="fixed bottom-0 left-0 right-0 bg-yellow-500 text-black p-2 text-xs z-50">
-          Auth0 Debug: {isAuthenticated ? `Authenticated (Roles: ${user?.['https://tripleem/roles']?.join(', ') || 'none'})` : 'Not authenticated'}
-        </div>
-      )}
+    // Wrap your app with the LanguageProvider
+    <LanguageProvider>
+      <Router>
+        {/* Debug Banner (visible only in development) */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="fixed bottom-0 left-0 right-0 bg-yellow-500 text-black p-2 text-xs z-50">
+            Auth0 Debug: {isAuthenticated ? `Authenticated (Roles: ${user?.['https://tripleem/roles']?.join(', ') || 'none'})` : 'Not authenticated'}
+          </div>
+        )}
 
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/unauthorized" element={<div className="h-screen flex items-center justify-center">You don't have permission to access this page</div>} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/unauthorized" element={<div className="h-screen flex items-center justify-center">You don't have permission to access this page</div>} />
 
-        {/* Protected Routes */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <MainLayout 
-                email={user?.email} 
-                username={user?.nickname || user?.name} 
-                userRoles={user?.['https://tripleem/roles']} 
-              />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="accounts" element={<Accounts />} />
-          <Route path="trades" element={<Trades />} />
-          <Route path="analysis" element={<Analysis />} />
-          <Route path="history" element={<History />} />
-         
-          <Route path="reports" element={<Reports />} />
-
-          <Route index element={<HelpCenterLayout />} />
-          <Route path="helpcenter/knowledgebase" element={<KnowledgeBase />} />
-          <Route path="helpcenter/faq" element={<FAQ />} />
-          <Route path="helpcenter/videotutorials" element={<VideoTutorials />} />
-          <Route path="helpcenter/contactsupport" element={<ContactSupport />} />
-          
-
-         
-          <Route path="configuration/crmdatabasescredentials" element={<CRMDatabasesCredentials />} />
-          <Route path="configuration/platformscredentials" element={<PlatformsCredentials />} />
-          <Route path="configuration/settings" element={<ConfigurationSettings />} />
-          <Route path="configuration/test1" element={<ConfigurationTest1 />} />
-          
-          {/* Test Routes */}
-          <Route path="test1/test11" element={<Test11 />} />
-          <Route path="test1/test12" element={<Test12 />} />
-          
-          {/* Admin Routes */}
-          <Route 
-            path="aiagent/workspace" 
+          {/* Protected Routes */}
+          <Route
+            path="/"
             element={
-              <ProtectedRoute requiredRoles={['Admin']}>
-                <Workspace />
+              <ProtectedRoute>
+                <MainLayout 
+                  email={user?.email} 
+                  username={user?.nickname || user?.name} 
+                  userRoles={user?.['https://tripleem/roles']} 
+                />
               </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="aiagent/settingsnew" 
-            element={
-              <ProtectedRoute requiredRoles={['Admin']}>
-                <SettingsNew />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="aiagent/integration" 
-            element={
-              <ProtectedRoute requiredRoles={['Admin']}>
-                <Integration />
-              </ProtectedRoute>
-            } 
-          />
-        </Route>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="accounts" element={<Accounts />} />
+            <Route path="trades" element={<Trades />} />
+            <Route path="analysis" element={<Analysis />} />
+            <Route path="history" element={<History />} />
+            <Route path="reports" element={<Reports />} />
 
-        {/* Fallback Route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+            <Route index element={<HelpCenterLayout />} />
+            <Route path="helpcenter/knowledgebase" element={<KnowledgeBase />} />
+            <Route path="helpcenter/faq" element={<FAQ />} />
+            <Route path="helpcenter/videotutorials" element={<VideoTutorials />} />
+            <Route path="helpcenter/contactsupport" element={<ContactSupport />} />
+
+            <Route path="configuration/crmdatabasescredentials" element={<CRMDatabasesCredentials />} />
+            <Route path="configuration/platformscredentials" element={<PlatformsCredentials />} />
+            <Route path="configuration/settings" element={<ConfigurationSettings />} />
+            <Route path="configuration/test1" element={<ConfigurationTest1 />} />
+
+            {/* Test Routes */}
+            <Route path="test1/test11" element={<Test11 />} />
+            <Route path="test1/test12" element={<Test12 />} />
+
+            {/* Admin Routes */}
+            <Route 
+              path="aiagent/workspace" 
+              element={
+                <ProtectedRoute requiredRoles={['Admin']}>
+                  <Workspace />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="aiagent/settingsnew" 
+              element={
+                <ProtectedRoute requiredRoles={['Admin']}>
+                  <SettingsNew />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="aiagent/integration" 
+              element={
+                <ProtectedRoute requiredRoles={['Admin']}>
+                  <Integration />
+                </ProtectedRoute>
+              } 
+            />
+          </Route>
+
+          {/* Fallback Route */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 }
 

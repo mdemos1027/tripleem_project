@@ -2,10 +2,12 @@ import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState, useRef } from "react";
 import Topbar from "../components/Topbar";
 // src/layouts/MainLayout.js
-import { navItems } from "../config/navItems";
+import { navItems } from "../config/navItems.jsx";
 
 import {
   FaTachometerAlt,
+  FaChevronDown,
+  FaChevronUp,
   FaFileAlt,
   FaCog,
   FaQuestionCircle
@@ -85,7 +87,7 @@ const MainLayout = () => {
                       </span>
                       {!isSidebarCollapsed && (
                         <span className="transition-transform group-open:rotate-180">
-                          ▼
+                          <FaChevronDown />
                         </span>
                       )}
                     </summary>
