@@ -30,7 +30,17 @@ export const translations = {
     auth0Debug: "Auth0 Debug",
     notAuthenticated: "Not authenticated",
     unauthorizedMessage: "You don't have permission to access this page",
+    welcome: "Welcome",
     dashboardMessage: "Welcome to the dashboard!",
+
+    // Accounts translations
+    accountsWelcome: "📋 Welcome to the Accounts",
+    
+    // Trades Page translations
+    tradesWelcome: "💹 Trades Page",
+
+    // Analysis translations
+    analysisWelcome: "📋 Welcome to the Analysis"
     
   },
   
@@ -63,8 +73,17 @@ export const translations = {
     auth0Debug: "Débogage Auth0",
     notAuthenticated: "Non authentifié",
     unauthorizedMessage: "Vous n'avez pas la permission d'accéder à cette page",
-    
+    welcome: "Bienvenue",
     dashboardMessage: "C'est votre tableau de bord sécurisé.",
+
+    // Accounts translations
+    accountsWelcome: "📋 Bienvenue dans les Comptes",
+
+    // Trades Page translations
+    tradesWelcome: "💹 Page des transactions",
+
+    // Analysis translations
+    analysisWelcome: "📋 Bienvenue dans les"
   },
 
   zh: {
@@ -96,7 +115,17 @@ export const translations = {
     auth0Debug: "Auth0 调试",
     notAuthenticated: "未认证",
     unauthorizedMessage: "您没有访问此页面的权限",
+    welcome: "欢迎",
     dashboardMessage: "这是您的安全仪表板。",
+
+    // Accounts translations
+    accountsWelcome: "📋 欢迎来到账户",
+
+    // Trades Page translations
+    tradesWelcome: "💹 交易页面",
+
+    // Analysis translations
+    analysisWelcome: "📋 欢迎来到"
   }
   // Add other languages here if needed
 };

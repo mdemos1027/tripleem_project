@@ -1,6 +1,10 @@
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../translations";
+
 const Analysis = () => {
-    return <div>📈 Analysis Page</div>;
-  };
-  
-  export default Analysis;
-  
+  const { language } = useLanguage();
+
+  return <div>{translations[language].accountsWelcome}</div>;
+};
+
+export default Analysis;
