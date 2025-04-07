@@ -1,17 +1,22 @@
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
+
 export default function VideoTutorials() {
+  const { language } = useLanguage();
+
   const tutorials = [
     {
-      title: "Getting Started",
+      title: translations[language].videoGettingStarted,
       duration: "4:32",
       thumbnail: "/placeholder-video-1.jpg"
     },
     {
-      title: "Advanced Analytics",
+      title: translations[language].videoAdvancedAnalytics,
       duration: "7:15",
       thumbnail: "/placeholder-video-2.jpg"
     },
     {
-      title: "API Integration",
+      title: translations[language].videoAPIIntegration,
       duration: "10:42",
       thumbnail: "/placeholder-video-3.jpg"
     }
@@ -19,8 +24,8 @@ export default function VideoTutorials() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-8">Video Tutorials</h1>
-      
+      <h1 className="text-2xl font-bold mb-8">{translations[language].videoTutorialsTitle}</h1>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tutorials.map((video, index) => (
           <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">

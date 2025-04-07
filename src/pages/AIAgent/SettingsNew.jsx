@@ -1,7 +1,10 @@
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
+
 const Settings = () => {
-    return <div>💹 Settings Page</div>;
-  };
-  
-  export default Settings;
-  
-  
+  const { language } = useLanguage();
+
+  return <div>{translations[language].settingsPage}</div>;
+};
+
+export default Settings;

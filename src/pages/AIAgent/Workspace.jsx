@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
 
 const Workspace = () => {
+  const { language } = useLanguage();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,7 +33,7 @@ const Workspace = () => {
 
       const data = await res.json();
       if (!res.ok) {
-        alert(data.error?.message || "Something went wrong");
+        alert(data.error?.message || translations[language].genericError);
         return;
       }
 
@@ -40,7 +43,7 @@ const Workspace = () => {
       }
     } catch (err) {
       console.error("Fetch error:", err);
-      alert("Network or API error");
+      alert(translations[language].networkError);
     }
 
     setLoading(false);
@@ -57,7 +60,7 @@ const Workspace = () => {
         <input
           type="password"
           className="flex-1 p-2 rounded border text-sm text-black"
-          placeholder="Enter your OpenAI API key..."
+          placeholder={translations[language].apiKeyPlaceholder}
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
         />
@@ -77,7 +80,7 @@ const Workspace = () => {
             <div className="text-sm">{msg.content}</div>
           </div>
         ))}
-        {loading && <div className="text-gray-400 text-sm">Thinking...</div>}
+        {loading && <div className="text-gray-400 text-sm">{translations[language].thinking}</div>}
       </div>
 
       {/* Input Area */}
@@ -85,7 +88,7 @@ const Workspace = () => {
         <input
           ref={inputRef}
           className="flex-1 p-3 rounded border text-sm text-black"
-          placeholder="Ask something..."
+          placeholder={translations[language].askPlaceholder}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
@@ -95,7 +98,7 @@ const Workspace = () => {
           disabled={loading || !apiKey}
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
         >
-          {loading ? 'Sending...' : 'Send'}
+          {loading ? translations[language].sending : translations[language].send}
         </button>
       </div>
     </div>

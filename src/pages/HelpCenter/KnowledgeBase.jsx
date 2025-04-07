@@ -1,24 +1,29 @@
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
+
 export default function KnowledgeBase() {
+  const { language } = useLanguage();
+
   const categories = [
     {
-      name: "Getting Started",
+      name: translations[language].gettingStarted,
       articles: [
-        { title: "Account Setup", views: 1245 },
-        { title: "First Steps Guide", views: 892 }
+        { title: translations[language].accountSetup, views: 1245 },
+        { title: translations[language].firstSteps, views: 892 }
       ]
     },
     {
-      name: "Advanced Features",
+      name: translations[language].advancedFeatures,
       articles: [
-        { title: "API Integration", views: 567 },
-        { title: "Automation Rules", views: 421 }
+        { title: translations[language].apiIntegration, views: 567 },
+        { title: translations[language].automationRules, views: 421 }
       ]
     }
   ];
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-8">Knowledge Base</h1>
+      <h1 className="text-2xl font-bold mb-8">{translations[language].knowledgeBaseTitle}</h1>
       
       <div className="space-y-8">
         {categories.map((category, index) => (
@@ -32,7 +37,7 @@ export default function KnowledgeBase() {
                 >
                   <h3 className="font-medium">{article.title}</h3>
                   <p className="text-sm text-gray-500 mt-1">
-                    {article.views.toLocaleString()} views
+                    {article.views.toLocaleString()} {translations[language].views}
                   </p>
                 </div>
               ))}

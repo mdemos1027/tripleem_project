@@ -1,20 +1,23 @@
 import { useState } from 'react';
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
 
 export default function FAQ() {
+  const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
     {
-      question: "How do I reset my password?",
-      answer: "Navigate to Settings > Security and click 'Reset Password'."
+      question: translations[language].faqQ1,
+      answer: translations[language].faqA1
     },
     {
-      question: "Where can I find my API keys?",
-      answer: "API keys are available under Account Settings > Developer."
+      question: translations[language].faqQ2,
+      answer: translations[language].faqA2
     },
     {
-      question: "How to enable two-factor authentication?",
-      answer: "Go to Security Settings and follow the 2FA setup wizard."
+      question: translations[language].faqQ3,
+      answer: translations[language].faqA3
     }
   ];
 
@@ -24,8 +27,8 @@ export default function FAQ() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-8">Frequently Asked Questions</h1>
-      
+      <h1 className="text-2xl font-bold mb-8">{translations[language].faqTitle}</h1>
+
       <div className="space-y-3">
         {faqs.map((faq, index) => (
           <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">

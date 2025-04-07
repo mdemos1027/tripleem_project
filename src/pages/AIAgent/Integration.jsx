@@ -1,26 +1,35 @@
 import { useState } from 'react';
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
 
 const Integration = () => {
   const [apiKey, setApiKey] = useState(localStorage.getItem('openai_api_key') || '');
+  const { language } = useLanguage(); // Get current language
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     localStorage.setItem('openai_api_key', apiKey);
-    alert("API Key saved!");
+    alert(translations[language].apiKeySaved); // Translated alert
   };
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">AI Agent Integration</h2>
-      <input
-        type="password"
-        className="w-full p-2 text-black rounded"
-        placeholder="Enter your OpenAI API Key"
-        value={apiKey}
-        onChange={(e) => setApiKey(e.target.value)}
-      />
-      <button onClick={handleSave} className="px-4 py-2 bg-blue-600 text-white rounded">
-        Save API Key
-      </button>
+      <h2 className="text-xl font-semibold">{translations[language].aiAgentIntegration}</h2>
+
+      <form onSubmit={handleSave} className="space-y-4">
+        <input
+          type="password"
+          className="w-full p-2 text-black rounded"
+          placeholder={translations[language].apiKeyPlaceholder}
+          value={apiKey}
+          onChange={(e) => setApiKey(e.target.value)}
+          autoComplete="off"
+        />
+
+        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+          {translations[language].saveApiKey}
+        </button>
+      </form>
     </div>
   );
 };

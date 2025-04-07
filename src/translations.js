@@ -62,6 +62,63 @@ export const translations = {
     credentialsSaved: "CRM Database credentials saved successfully!",
     fieldsRequired: "All fields are required!",
     
+    // AI Integrations Translations
+    aiAgentIntegration: "AI Agent Integration",
+    apiKeyPlaceholder: "Enter your OpenAI API Key",
+    saveApiKey: "Save API Key",
+    apiKeySaved: "API Key saved!",
+
+    // AI Workspace translations
+    apiKeyPlaceholder: "Enter your OpenAI API key...",
+    askPlaceholder: "Ask something...",
+    send: "Send",
+    sending: "Sending...",
+    thinking: "Thinking...",
+    genericError: "Something went wrong",
+    networkError: "Network or API error",
+
+    // AI Settings translations
+    settingsPage: "💹 Settings Page",
+
+    // Platforms Credentials translations
+    platformsCredentialsPage: "💹 Platforms Credentials Page",
+
+    // Configuration Settings translations
+    configurationSettingsPage: "💹 Configuration Settings Page",
+
+    // Help Center / Knowledge Base translations
+    knowledgeBaseTitle: "Knowledge Base",
+    gettingStarted: "Getting Started",
+    accountSetup: "Account Setup",
+    firstSteps: "First Steps Guide",
+    advancedFeatures: "Advanced Features",
+    apiIntegration: "API Integration",
+    automationRules: "Automation Rules",
+    views: "views",
+
+    // Help Center / FAQ translations
+    faqTitle: "Frequently Asked Questions",
+    faqQ1: "How do I reset my password?",
+    faqA1: "Navigate to Settings > Security and click 'Reset Password'.",
+    faqQ2: "Where can I find my API keys?",
+    faqA2: "API keys are available under Account Settings > Developer.",
+    faqQ3: "How to enable two-factor authentication?",
+    faqA3: "Go to Security Settings and follow the 2FA setup wizard.",
+
+    // Help Center / Video Tutorials translations
+    videoTutorialsTitle: "Video Tutorials",
+    videoGettingStarted: "Getting Started",
+    videoAdvancedAnalytics: "Advanced Analytics",
+    videoAPIIntegration: "API Integration",
+
+    // Help Center / Contact Support translations
+    contactTitle: "Contact Support",
+    contactName: "Name",
+    contactEmail: "Email",
+    contactSubject: "Subject",
+    contactMessage: "Message",
+    contactSubmit: "Submit Request",
+    contactSuccess: "Your message has been submitted!",
   },
   
   fr: {
@@ -125,7 +182,64 @@ export const translations = {
     credentialsSaved: "Identifiants de la base CRM enregistrés avec succès !",
     fieldsRequired: "Tous les champs sont requis !",
 
-  },
+    // Integrations Translations
+    aiAgentIntegration: "Intégration de l'agent IA",
+    apiKeyPlaceholder: "Entrez votre clé API OpenAI",
+    saveApiKey: "Enregistrer la clé API",
+    apiKeySaved: "Clé API enregistrée !",
+
+    // AI Workspace translations
+    apiKeyPlaceholder: "Entrez votre clé API OpenAI...",
+    askPlaceholder: "Posez une question...",
+    send: "Envoyer",
+    sending: "Envoi...",
+    thinking: "Réflexion...",
+    genericError: "Une erreur s'est produite",
+    networkError: "Erreur réseau ou API",
+
+    // AI Settings translations
+    settingsPage: "💹 Page des Paramètres",
+
+    // Platforms Credentials translations
+    platformsCredentialsPage: "💹 Page des Identifiants Plateformes",
+
+    // Configuration Settings translations
+    configurationSettingsPage: "💹 Page des Paramètres de Configuration",
+
+    // Help Center / Knowledge Base translations
+    knowledgeBaseTitle: "Base de Connaissances",
+    gettingStarted: "Pour Commencer",
+    accountSetup: "Configuration du Compte",
+    firstSteps: "Guide des Premiers Pas",
+    advancedFeatures: "Fonctionnalités Avancées",
+    apiIntegration: "Intégration de l'API",
+    automationRules: "Règles d'automatisation",
+    views: "vues",
+
+    // Help Center / FAQ translations
+    faqTitle: "Foire Aux Questions",
+    faqQ1: "Comment réinitialiser mon mot de passe ?",
+    faqA1: "Allez dans Paramètres > Sécurité et cliquez sur 'Réinitialiser le mot de passe'.",
+    faqQ2: "Où puis-je trouver mes clés API ?",
+    faqA2: "Les clés API sont disponibles sous Paramètres du compte > Développeur.",
+    faqQ3: "Comment activer l'authentification à deux facteurs ?",
+    faqA3: "Accédez aux Paramètres de sécurité et suivez l'assistant 2FA.",
+
+    // Help Center / Video Tutorials translations
+    videoTutorialsTitle: "Tutoriels Vidéo",
+    videoGettingStarted: "Pour Commencer",
+    videoAdvancedAnalytics: "Analytique Avancée",
+    videoAPIIntegration: "Intégration API",
+
+    // Help Center / Contact Support translations
+    contactTitle: "Contacter le Support",
+    contactName: "Nom",
+    contactEmail: "E-mail",
+    contactSubject: "Sujet",
+    contactMessage: "Message",
+    contactSubmit: "Soumettre la Demande",
+    contactSuccess: "Votre message a été envoyé !",
+    },
 
   zh: {
     dashboard: "仪表盘",
@@ -187,7 +301,65 @@ export const translations = {
     saveCredentials: "保存凭证",
     credentialsSaved: "CRM数据库凭证保存成功！",
     fieldsRequired: "所有字段都是必填的！",
-  }
+
+    // Integrations Translations
+    aiAgentIntegration: "AI 代理集成",
+    apiKeyPlaceholder: "输入您的 OpenAI API 密钥",
+    saveApiKey: "保存 API 密钥",
+    apiKeySaved: "API 密钥已保存！",
+
+    // AI Workspace translations
+    apiKeyPlaceholder: "输入您的 OpenAI API 密钥...",
+    askPlaceholder: "问点什么...",
+    send: "发送",
+    sending: "发送中...",
+    thinking: "思考中...",
+    genericError: "发生错误",
+    networkError: "网络或接口错误",
+
+    // AI Settings translations
+    settingsPage: "💹 设置页面",
+
+    // Platforms Credentials translations
+    platformsCredentialsPage: "💹 平台凭证页面",
+
+    // Configuration Settings translations
+    configurationSettingsPage: "💹 配置设置页面",
+
+    // Help Center / Knowledge Base translations
+    knowledgeBaseTitle: "知识库",
+    gettingStarted: "入门指南",
+    accountSetup: "账户设置",
+    firstSteps: "新手指南",
+    advancedFeatures: "高级功能",
+    apiIntegration: "API 集成",
+    automationRules: "自动化规则",
+    views: "浏览",
+
+    // Help Center / FAQ translations
+    faqTitle: "常见问题解答",
+    faqQ1: "如何重置密码？",
+    faqA1: "前往 设置 > 安全，点击“重置密码”。",
+    faqQ2: "在哪里可以找到我的 API 密钥？",
+    faqA2: "API 密钥可在账户设置 > 开发者中找到。",
+    faqQ3: "如何启用双因素认证？",
+    faqA3: "进入安全设置并按照 2FA 设置向导操作。",
+
+    // Help Center / Video Tutorials translations
+    videoTutorialsTitle: "视频教程",
+    videoGettingStarted: "入门指南",
+    videoAdvancedAnalytics: "高级分析",
+    videoAPIIntegration: "API 集成",
+
+    // Help Center / Contact Support translations
+    contactTitle: "联系支持",
+    contactName: "姓名",
+    contactEmail: "电子邮箱",
+    contactSubject: "主题",
+    contactMessage: "消息",
+    contactSubmit: "提交请求",
+    contactSuccess: "您的消息已提交！",
+    }
   
   // Add other languages here if needed
 };

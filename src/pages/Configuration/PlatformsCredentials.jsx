@@ -1,6 +1,10 @@
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
+
 const PlatformsCredentials = () => {
-    return <div>💹 PlatformsCredentials Page</div>;
-  };
-  
-  export default PlatformsCredentials;
-  
+  const { language } = useLanguage();
+
+  return <div>{translations[language].platformsCredentialsPage}</div>;
+};
+
+export default PlatformsCredentials;

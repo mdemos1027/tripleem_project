@@ -1,5 +1,10 @@
+import { useLanguage } from "../../context/LanguageContext";
+import { translations } from "../../translations";
+
 const ConfigurationSettings = () => {
-  return <div>💹 ConfigurationSettings Page</div>;
+  const { language } = useLanguage();
+
+  return <div>{translations[language].configurationSettingsPage}</div>;
 };
 
 export default ConfigurationSettings;
