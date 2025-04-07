@@ -43,7 +43,24 @@ export const translations = {
     analysisWelcome: "📋 Welcome to the Analysis",
 
     // History translations
-    historyPage: "📚 History Page"
+    historyPage: "📚 History Page",
+
+    // Reports translations
+    reportsWelcome: "📊 Reports Page",
+
+    // CRM Databases Credentials translations
+    crmCredentials: "CRM Database Credentials",
+    host: "Host",
+    username: "Username",
+    password: "Password",
+    database: "Database",
+    hostPlaceholder: "Enter MySQL Host",
+    usernamePlaceholder: "Enter MySQL Username",
+    passwordPlaceholder: "Enter MySQL Password",
+    databasePlaceholder: "Enter Database Name",
+    saveCredentials: "Save Credentials",
+    credentialsSaved: "CRM Database credentials saved successfully!",
+    fieldsRequired: "All fields are required!",
     
   },
   
@@ -89,7 +106,25 @@ export const translations = {
     analysisWelcome: "📋 Bienvenue dans les",
 
     // History translations
-    historyPage: "📚 Page d'Historique"
+    historyPage: "📚 Page d'Historique",
+
+    // Reports translations
+    reportsWelcome: "📊 Page des Rapports",
+
+    // CRM Databases Credentials translations
+    crmCredentials: "Identifiants de la base CRM",
+    host: "Hôte",
+    username: "Nom d'utilisateur",
+    password: "Mot de passe",
+    database: "Base de données",
+    hostPlaceholder: "Entrez l'hôte MySQL",
+    usernamePlaceholder: "Entrez le nom d'utilisateur MySQL",
+    passwordPlaceholder: "Entrez le mot de passe MySQL",
+    databasePlaceholder: "Entrez le nom de la base de données",
+    saveCredentials: "Enregistrer les identifiants",
+    credentialsSaved: "Identifiants de la base CRM enregistrés avec succès !",
+    fieldsRequired: "Tous les champs sont requis !",
+
   },
 
   zh: {
@@ -134,7 +169,24 @@ export const translations = {
     analysisWelcome: "📋 欢迎来到",
 
     // History translations
-    historyPage: "📚 历史页面"
+    historyPage: "📚 历史页面",
+
+    // Reports translations
+    reportsWelcome: "📊 报告页面",
+
+    // CRM Databases Credentials translations
+    crmCredentials: "CRM数据库凭证",
+    host: "主机",
+    username: "用户名",
+    password: "密码",
+    database: "数据库",
+    hostPlaceholder: "输入MySQL主机地址",
+    usernamePlaceholder: "输入MySQL用户名",
+    passwordPlaceholder: "输入MySQL密码",
+    databasePlaceholder: "输入数据库名称",
+    saveCredentials: "保存凭证",
+    credentialsSaved: "CRM数据库凭证保存成功！",
+    fieldsRequired: "所有字段都是必填的！",
   }
   
   // Add other languages here if needed
