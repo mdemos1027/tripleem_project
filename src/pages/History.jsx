@@ -1,6 +1,10 @@
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../translations";
+
 const History = () => {
-    return <div>📚 History Page</div>;
-  };
-  
-  export default History;
-  
+  const { language } = useLanguage();
+
+  return <div>{translations[language].historyPage}</div>;
+};
+
+export default History;

@@ -40,7 +40,10 @@ export const translations = {
     tradesWelcome: "💹 Trades Page",
 
     // Analysis translations
-    analysisWelcome: "📋 Welcome to the Analysis"
+    analysisWelcome: "📋 Welcome to the Analysis",
+
+    // History translations
+    historyPage: "📚 History Page"
     
   },
   
@@ -83,7 +86,10 @@ export const translations = {
     tradesWelcome: "💹 Page des transactions",
 
     // Analysis translations
-    analysisWelcome: "📋 Bienvenue dans les"
+    analysisWelcome: "📋 Bienvenue dans les",
+
+    // History translations
+    historyPage: "📚 Page d'Historique"
   },
 
   zh: {
@@ -125,7 +131,11 @@ export const translations = {
     tradesWelcome: "💹 交易页面",
 
     // Analysis translations
-    analysisWelcome: "📋 欢迎来到"
+    analysisWelcome: "📋 欢迎来到",
+
+    // History translations
+    historyPage: "📚 历史页面"
   }
+  
   // Add other languages here if needed
 };

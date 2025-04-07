@@ -4,7 +4,7 @@ import { translations } from "../translations";
 const Analysis = () => {
   const { language } = useLanguage();
 
-  return <div>{translations[language].accountsWelcome}</div>;
+  return <div>{translations[language].analysisWelcome}</div>;
 };
 
 export default Analysis;
