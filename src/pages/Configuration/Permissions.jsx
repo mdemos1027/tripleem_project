@@ -81,38 +81,40 @@ const Permissions = () => {
     <div className="p-6 text-white">
       <h2 className="text-2xl font-semibold mb-4">{translations[language].permissions}</h2>
 
-      {/* Filters aligned with columns */}
-      <div className="flex gap-4 mb-4">
-        <input
-          placeholder={translations[language].searchName}
-          className="w-[25%] p-2 rounded bg-[#1d1d1d] border border-gray-600 text-white"
-          value={search.name}
-          onChange={e => setSearch({ ...search, name: e.target.value })}
-        />
-        <input
-          placeholder={translations[language].searchEmail}
-          className="w-[25%] p-2 rounded bg-[#1d1d1d] border border-gray-600 text-white"
-          value={search.email}
-          onChange={e => setSearch({ ...search, email: e.target.value })}
-        />
-        <select
-          className="w-[25%] p-2 rounded bg-[#1d1d1d] border border-gray-600 text-white"
-          value={search.role}
-          onChange={e => setSearch({ ...search, role: e.target.value })}
-        >
-          <option value="">{translations[language].allRoles}</option>
-          {roles.map(r => (
-            <option key={r} value={r}>{r}</option>
-          ))}
-        </select>
-      </div>
-
       <table className="w-full text-sm mb-6 border border-gray-700">
         <thead className="bg-gray-800">
           <tr>
-            <th className="p-3 text-left">{translations[language].contactName}</th>
-            <th className="p-3 text-left">{translations[language].contactEmail}</th>
-            <th className="p-3 text-left">{translations[language].roles}</th>
+            <th className="p-3 text-left">
+              {translations[language].contactName}
+              <input
+                placeholder={translations[language].searchName}
+                className="mt-2 w-full p-1 rounded bg-[#1d1d1d] border border-gray-600 text-white"
+                value={search.name}
+                onChange={e => setSearch({ ...search, name: e.target.value })}
+              />
+            </th>
+            <th className="p-3 text-left">
+              {translations[language].contactEmail}
+              <input
+                placeholder={translations[language].searchEmail}
+                className="mt-2 w-full p-1 rounded bg-[#1d1d1d] border border-gray-600 text-white"
+                value={search.email}
+                onChange={e => setSearch({ ...search, email: e.target.value })}
+              />
+            </th>
+            <th className="p-3 text-left">
+              {translations[language].roles}
+              <select
+                className="mt-2 w-full p-1 rounded bg-[#1d1d1d] border border-gray-600 text-white"
+                value={search.role}
+                onChange={e => setSearch({ ...search, role: e.target.value })}
+              >
+                <option value="">{translations[language].allRoles}</option>
+                {roles.map(r => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
+              </select>
+            </th>
             <th className="p-3 text-left">{translations[language].actions}</th>
           </tr>
         </thead>

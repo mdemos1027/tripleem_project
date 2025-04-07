@@ -1,72 +1,72 @@
 // src/components/NavItems.jsx
 import React from "react";
-import { FaTachometerAlt, FaFileAlt, FaCog, FaQuestionCircle } from "react-icons/fa";
-import { useLanguage } from "../context/LanguageContext.jsx";  // Correct import
-import { translations } from "../translations";  // Correct import
+import { useLanguage } from "../context/LanguageContext.jsx";
+import { translations } from "../translations";
 
+// Navigation definition using iconKey (used with lazy-loaded icons)
 export const navItems = [
   {
     label: "dashboard",
-    icon: <FaTachometerAlt />,
+    iconKey: "dashboard",
     children: [
-      { path: "/dashboard", label: "dashboard" },
-      { path: "/accounts", label: "accounts" },
-      { path: "/trades", label: "trades" },
-      { path: "/analysis", label: "analysis" },
-      { path: "/history", label: "history" },
+      { path: "/dashboard", label: "dashboard", iconKey: "dashboard" },
+      { path: "/accounts", label: "accounts", iconKey: "userGroup" },
+      { path: "/trades", label: "trades", iconKey: "exchange" },
+      { path: "/analysis", label: "analysis", iconKey: "chartLine" },
+      { path: "/history", label: "history", iconKey: "history" },
     ],
   },
-  { path: "/reports", label: "reports", icon: <FaFileAlt /> },
+  {
+    path: "/reports",
+    label: "reports",
+    iconKey: "reports",
+  },
   {
     label: "configuration",
-    icon: <FaCog />,
+    iconKey: "settings",
     children: [
-      { path: "/configuration/crmdatabasescredentials", label: "crmDatabasesCredentials" },
-      { path: "/configuration/platformscredentials", label: "platformsCredentials" },
-      { path: "/configuration/settings", label: "settings" },
-      { path: "/configuration/permissions", label: "permissions" },
+      { path: "/configuration/crmdatabasescredentials", label: "CRM Databases Credentials", iconKey: "database" },
+      { path: "/configuration/platformscredentials", label: "Platforms Credentials", iconKey: "key" },
+      { path: "/configuration/settings", label: "Settings", iconKey: "gear" },
+      { path: "/configuration/permissions", label: "Permissions", iconKey: "shield" },
     ],
   },
   {
     label: "helpCenter",
-    icon: <FaQuestionCircle />,
+    iconKey: "help",
     children: [
-      { path: "/helpcenter/knowledgebase", label: "knowledgeBase" },
-      { path: "/helpcenter/faq", label: "faq" },
-      { path: "/helpcenter/videotutorials", label: "videoTutorials" },
-      { path: "/helpcenter/contactsupport", label: "contactSupport" },
+      { path: "/helpcenter/knowledgebase", label: "Knowledge Base", iconKey: "book" },
+      { path: "/helpcenter/faq", label: "FAQ", iconKey: "question" },
+      { path: "/helpcenter/videotutorials", label: "Video Tutorials", iconKey: "video" },
+      { path: "/helpcenter/contactsupport", label: "Contact Support", iconKey: "envelope" },
     ],
   },
   {
     label: "aiAgent",
-    icon: <FaTachometerAlt />,
+    iconKey: "robot",
     children: [
-      { path: "/aiagent/workspace", label: "workspace" },
-      { path: "/aiagent/integration", label: "integration" },
-      { path: "/aiagent/settingsnew", label: "settings" },
+      { path: "/aiagent/workspace", label: "Workspace", iconKey: "terminal" },
+      { path: "/aiagent/integration", label: "Integration", iconKey: "plug" },
+      { path: "/aiagent/settingsnew", label: "Settings", iconKey: "gear" },
     ],
   },
 ];
 
 const NavItems = () => {
-  const { language } = useLanguage(); // Get the current language from context
-
-  // Helper function to get translated label based on current language
-  const getTranslatedLabel = (key) => {
-    return translations[language][key] || key; // Default to the key if translation is not found
-  };
+  const { language } = useLanguage();
+  const t = (key) => translations[language][key] || key;
 
   return (
     <nav>
       <ul>
         {navItems.map((item, index) => (
           <li key={index}>
-            <div>{getTranslatedLabel(item.label)}</div>
+            <div>{t(item.label)}</div>
             {item.children && (
               <ul>
                 {item.children.map((child, childIndex) => (
                   <li key={childIndex}>
-                    <a href={child.path}>{getTranslatedLabel(child.label)}</a>
+                    <a href={child.path}>{t(child.label)}</a>
                   </li>
                 ))}
               </ul>

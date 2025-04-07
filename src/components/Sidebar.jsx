@@ -1,57 +1,22 @@
-// Sidebar.jsx
-import { NavLink } from "react-router-dom";
-import { FaTachometerAlt, FaFileAlt, FaCog, FaQuestionCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
+// src/components/Sidebar.jsx
+import { NavLink, useLocation } from "react-router-dom";
+import { navItems } from "./NavItems"; // centralized nav config
+import { icons } from "../config/iconMap"; // lazy-loaded icons
+import IconWrapper from "./IconWrapper"; // suspense wrapper
+import { FaChevronDown } from "react-icons/fa";
 
 const Sidebar = ({ isSidebarCollapsed, setIsSidebarCollapsed }) => {
-  const linkClasses = ({ isActive }) =>
-    `block px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition ${
-      isActive ? "bg-gray-700 text-blue-400" : "text-white"
-    }`;
+  const location = useLocation();
 
-  const navItems = [
-    {
-      label: "Dashboard",
-      icon: <FaTachometerAlt />,
-      children: [
-        { path: "/dashboard", label: "Dashboard" },
-        { path: "/accounts", label: "Accounts" },
-        { path: "/trades", label: "Trades" },
-        { path: "/analysis", label: "Analysis" },
-        { path: "/history", label: "History" },
-      ],
-    },
-    { path: "/reports", label: "Reports", icon: <FaFileAlt /> },
-    
-    
-      { path: "/configuration/crmdatabasescredentials", label: "CRM Databases Credentials" },
-      { path: "/configuration/platformscredentials", label: "Platforms Credentials" },
-      { path: "/configuration/settings", label: "Settings" },
-      { path: "/configuration/test1", label: "Test1" },
-    
-  
-    
-    
-    {
-      label: "Help Center",
-      icon: <FaQuestionCircle />,
-      children: [
-        { path: "/HelpCenter/knowledgebase", label: "Knowledge Base" },
-        { path: "/HelpCenter/faq", label: "FAQ" },
-        { path: "/HelpCenter/videotutorials", label: "Video Tutorials" },
-        { path: "/HelpCenter/contactsupport", label: "Contact Support" },
-      ],
-    },
-    
-    {
-      label: "Test2",
-      icon: <FaTachometerAlt />,
-      children: [
-        { path: "/test2/test21", label: "Test21" },
-        { path: "/test2/test22", label: "Test22" },
-        { path: "/test2/test23", label: "Test23" },
-      ],
-    },
-  ];
+  const linkClasses = ({ isActive }) =>
+    `flex items-center px-3 py-1.5 rounded text-sm font-medium no-underline transition gap-2
+     ${isActive ? "bg-blue-600 text-white" : "text-white hover:bg-gray-700"}`;
+
+  const isActivePath = (item) => {
+    if (item.path === location.pathname) return true;
+    if (item.children) return item.children.some((c) => c.path === location.pathname);
+    return false;
+  };
 
   return (
     <aside
@@ -62,47 +27,47 @@ const Sidebar = ({ isSidebarCollapsed, setIsSidebarCollapsed }) => {
       style={{ top: "calc(var(--topbar-height) * 2)" }}
     >
       {navItems.map((item, index) => {
-        const isActive = window.location.pathname === item.path;
+        const Icon = icons[item.iconKey];
+        const isActive = isActivePath(item);
+
         return (
           <div key={index} className="mb-2 relative">
             {isActive && (
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-blue-500 rounded-sm"></div>
             )}
+
             {item.children ? (
               <details className="group" open={isActive}>
                 <summary
-                  className={`flex items-center justify-between px-3 py-2 text-sm font-medium rounded hover:bg-gray-700 cursor-pointer ${isActive ? "text-white font-semibold" : "text-white"}`}
+                  className={`flex items-center justify-between px-3 py-2 text-sm font-medium rounded cursor-pointer
+                  ${isActive ? "text-white font-semibold" : "text-white hover:bg-gray-700"}`}
                 >
-                  <span className="flex items-center">
-                    {item.icon}
-                    {!isSidebarCollapsed && <span className="ml-2">{item.label}</span>}
+                  <span className="flex items-center gap-2">
+                    {Icon && <IconWrapper Icon={Icon} className="w-4 h-4" />}
+                    {!isSidebarCollapsed && <span>{item.label}</span>}
                   </span>
-                  {!isSidebarCollapsed && <FaChevronDown className="transition-transform group-open:rotate-180" />}
+                  {!isSidebarCollapsed && (
+                    <FaChevronDown className="transition-transform group-open:rotate-180" />
+                  )}
                 </summary>
+
                 {!isSidebarCollapsed && (
                   <div className="ml-7 mt-1 space-y-1">
                     {item.children.map((child) => (
-                      <NavLink
-                        key={child.path}
-                        to={child.path}
-                        className={linkClasses}
-                      >
-                        <span className="inline-block w-5 text-center">
-                          <FaTachometerAlt />
+                      <NavLink key={child.path} to={child.path} className={linkClasses}>
+                        <span className="inline-block w-4 h-4">
+                          <IconWrapper Icon={Icon} className="w-4 h-4" />
                         </span>
-                        <span className="ml-2">{child.label}</span>
+                        <span>{child.label}</span>
                       </NavLink>
                     ))}
                   </div>
                 )}
               </details>
             ) : (
-              <NavLink
-                to={item.path}
-                className={linkClasses}
-              >
-                {item.icon}
-                {!isSidebarCollapsed && <span className="ml-2">{item.label}</span>}
+              <NavLink to={item.path} className={linkClasses}>
+                {Icon && <IconWrapper Icon={Icon} className="w-4 h-4" />}
+                {!isSidebarCollapsed && <span>{item.label}</span>}
               </NavLink>
             )}
           </div>
