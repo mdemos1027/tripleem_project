@@ -119,6 +119,15 @@ export const translations = {
     contactMessage: "Message",
     contactSubmit: "Submit Request",
     contactSuccess: "Your message has been submitted!",
+
+    // Configuration / Permissions Tranlation
+    searchName: "Search by name",
+    searchEmail: "Search by email",
+    allRoles: "All roles",
+    roles: "Roles",
+    actions: "Actions",
+    managePermissions: "Manage Permissions",
+    hide: "Hide",
   },
   
   fr: {
@@ -239,6 +248,15 @@ export const translations = {
     contactMessage: "Message",
     contactSubmit: "Soumettre la Demande",
     contactSuccess: "Votre message a été envoyé !",
+
+    // Configuration / Permissions Tranlation
+    searchName: "Rechercher par nom",
+    searchEmail: "Rechercher par e-mail",
+    allRoles: "Tous les rôles",
+    roles: "Rôles",
+    actions: "Actions",
+    managePermissions: "Gérer les autorisations",
+    hide: "Masquer",
     },
 
   zh: {
@@ -359,6 +377,15 @@ export const translations = {
     contactMessage: "消息",
     contactSubmit: "提交请求",
     contactSuccess: "您的消息已提交！",
+
+    // Configuration / Permissions Tranlation
+    searchName: "按姓名搜索",
+    searchEmail: "按电子邮件搜索",
+    allRoles: "所有角色",
+    roles: "角色",
+    actions: "操作",
+    managePermissions: "管理权限",
+    hide: "隐藏",
     }
   
   // Add other languages here if needed
