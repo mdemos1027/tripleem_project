@@ -148,7 +148,7 @@ export const translations = {
     videoTutorials: "Tutoriels vidéo",
     contactSupport: "Contacter le support",
     aiAgent: "Agent IA",
-    workspace: "Espace de travail",
+    workspace: "Espace de travail", 
     integration: "Intégration",
     profile: "Profil",  // French translation for Profile
     billing: "Facturation",  // French translation for Billing
