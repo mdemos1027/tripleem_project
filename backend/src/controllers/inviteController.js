@@ -1,23 +1,33 @@
 import { auth0 } from '../utils/auth0Client.js';
-import pool from '../db.js';
+import { pool } from '../db.js';
 
 export const inviteUser = async (req, res) => {
   const { email, name, role_id, client_id, brand_id } = req.body;
-  const tokenData = req.auth; // JWT decoded by checkJwt middleware
+  const tokenData = req.auth;
+  const auth0Id = tokenData?.sub;
+
+  console.log('🔐 Decoded token:', tokenData);
+
+  if (!auth0Id) {
+    return res.status(401).json({ message: 'Invalid token payload: missing Auth0 ID' });
+  }
 
   try {
-    // Step 1: Confirm the requester is in DB and has admin role
+    // Step 1: Confirm requester is admin
     const requester = await pool.query(
       `SELECT u.role_id, r.name AS role_name
        FROM tripleem_db.users u
        LEFT JOIN tripleem_db.roles r ON u.role_id = r.id
-       WHERE u.email = $1`,
-      [tokenData.email]
+       WHERE u.auth0_id = $1`,
+      [auth0Id]
     );
 
-    if (!requester.rowCount || requester.rows[0].role_name !== 'admin') {
+    if (!requester.rowCount || requester.rows[0].role_name.toLowerCase() !== 'admin') {
       return res.status(403).json({ message: 'Only admins can invite users' });
     }
+
+    console.log('✅ Requester validated as admin.');
+    console.log('📨 Creating user in Auth0...');
 
     // Step 2: Create user in Auth0
     const newUser = await auth0.createUser({
@@ -28,7 +38,9 @@ export const inviteUser = async (req, res) => {
       email_verified: false
     });
 
-    // Step 3: Save user in Postgres
+    console.log('✅ User created in Auth0:', newUser.user_id);
+
+    // Step 3: Save to DB
     await pool.query(
       `INSERT INTO tripleem_db.users 
        (auth0_id, email, name, role_id, client_id, brand_id)
@@ -39,7 +51,10 @@ export const inviteUser = async (req, res) => {
     res.status(201).json({ message: 'User invited successfully' });
 
   } catch (err) {
-    console.error('Invite error:', err.message);
-    res.status(500).json({ message: 'Failed to invite user', error: err.message });
+    console.error('❌ Invite error details:', err);
+    res.status(500).json({
+      message: 'Failed to invite user',
+      error: err.message || JSON.stringify(err)
+    });
   }
 };
