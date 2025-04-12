@@ -13,7 +13,7 @@ export const inviteUser = async (req, res) => {
   }
 
   try {
-    // Step 1: Confirm requester is admin
+    // ✅ Step 1: Verify requester is an admin
     const requester = await pool.query(
       `SELECT u.role_id, r.name AS role_name
        FROM tripleem_db.users u
@@ -22,15 +22,17 @@ export const inviteUser = async (req, res) => {
       [auth0Id]
     );
 
-    if (!requester.rowCount || requester.rows[0].role_name.toLowerCase() !== 'admin') {
+    const roleName = requester.rows[0]?.role_name?.toLowerCase();
+
+    if (!requester.rowCount || roleName !== 'admin') {
       return res.status(403).json({ message: 'Only admins can invite users' });
     }
 
     console.log('✅ Requester validated as admin.');
     console.log('📨 Creating user in Auth0...');
 
-    // Step 2: Create user in Auth0
-    const newUser = await auth0.createUser({
+    // ✅ Step 2: Create user in Auth0
+    const newUser = await auth0.users.create({
       connection: 'Username-Password-Authentication',
       email,
       name,
@@ -40,7 +42,7 @@ export const inviteUser = async (req, res) => {
 
     console.log('✅ User created in Auth0:', newUser.user_id);
 
-    // Step 3: Save to DB
+    // ✅ Step 3: Save new user to Postgres
     await pool.query(
       `INSERT INTO tripleem_db.users 
        (auth0_id, email, name, role_id, client_id, brand_id)
