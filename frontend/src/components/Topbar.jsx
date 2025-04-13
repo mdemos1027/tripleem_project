@@ -87,7 +87,7 @@ const Topbar = ({
         }}
       >
         <a href="/">
-          <img src={appConfig.logoUrl} alt={appConfig.appName} className="h-15" />
+          <img src={appConfig.logoUrl} alt={appConfig.appName} className="h-10" />
         </a>
 
         <div className="w-auto flex items-center space-x-1">

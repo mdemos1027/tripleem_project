@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Layout and Pages
 import MainLayout from "./layout/MainLayout";
@@ -29,15 +30,40 @@ import { LanguageProvider } from "./context/LanguageContext";
 
 function App() {
   const { t } = useTranslation();
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    console.log("[App] Running in dev mode — auth bypassed.");
-  }, []);
+    const fetchUser = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        console.log("🪪 Access Token:", token); // <-- add this line
+        const res = await fetch("http://localhost:5000/api/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: "include" // ✅ Force cookies/token to be included
+        });
+        
+        // 👇 ADD THIS
+        console.log("Response status:", res.status);
+        const data = await res.json();
+        console.log("Response data:", data);
+        
+        setUserInfo(data);
+      } catch (err) {
+        console.error("Auth fetch failed:", err);
+      }
+    };
+
+    if (isAuthenticated) {
+      fetchUser();
+    }
+  }, [getAccessTokenSilently, isAuthenticated]);
 
   return (
     <LanguageProvider>
       <Router>
-        {/* Dev Debug Banner */}
         {process.env.NODE_ENV === 'development' && (
           <div className="fixed bottom-0 left-0 right-0 bg-yellow-500 text-black p-2 text-xs z-50">
             Auth Bypassed: Developer Mode
@@ -45,19 +71,17 @@ function App() {
         )}
 
         <Routes>
-          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/unauthorized" element={<div className="h-screen flex items-center justify-center">{t('unauthorizedMessage', "You don't have permission to access this page")}</div>} />
 
-          {/* Main Routes */}
           <Route
             path="/"
             element={
               <MainLayout
-                email="test@fake.com"
-                username="dev"
-                userRoles={["Admin"]}
+                email={userInfo?.email}
+                username={userInfo?.name}
+                userRoles={[userInfo?.role]}
               />
             }
           >
@@ -79,7 +103,6 @@ function App() {
             <Route path="configuration/settings" element={<ConfigurationSettings />} />
             <Route path="configuration/permissions" element={<Permissions />} />
 
-            {/* Previously protected admin-only routes */}
             <Route path="aiagent/workspace" element={<Workspace />} />
             <Route path="aiagent/settingsnew" element={<SettingsNew />} />
             <Route path="aiagent/integration" element={<Integration />} />

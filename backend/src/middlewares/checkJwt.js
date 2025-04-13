@@ -1,14 +1,16 @@
-import { expressjwt as jwt } from 'express-jwt';
+import { expressjwt } from 'express-jwt';
 import jwksRsa from 'jwks-rsa';
+import dotenv from 'dotenv';
 
-export const checkJwt = jwt({
+dotenv.config();
+
+export const checkJwt = expressjwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
   }),
-  audience: process.env.AUTH0_API_IDENTIFIER,
+  audience: 'https://tripleem-api',  // ✅ exactly this!
   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
   algorithms: ['RS256']
 });
