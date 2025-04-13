@@ -10,7 +10,12 @@ export const checkJwt = expressjwt({
     rateLimit: true,
     jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
   }),
-  audience: 'https://tripleem-api',  // ✅ exactly this!
+  audience: 'https://tripleem-api',
   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
   algorithms: ['RS256']
+}).unless({
+  custom: (req) => {
+    console.log("🧪 Authorization Header:", req.headers.authorization); // <-- Check the token
+    return false;
+  }
 });

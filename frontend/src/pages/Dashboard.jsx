@@ -1,14 +1,42 @@
 import { useLanguage } from "../context/LanguageContext"; // Import language context
 import { translations } from "../translations"; // Import translations
 import { useAuth0 } from "@auth0/auth0-react"; // Import Auth0 hook
+import { useEffect, useState } from "react"; // Import hooks for fetching user data
 
 const Dashboard = () => {
   const { language } = useLanguage(); // Get current language from context
-  const { user } = useAuth0(); // Access user data from Auth0
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0(); // Access Auth0 data
+  const [userInfo, setUserInfo] = useState(null); // State to hold user data from the backend
 
-  // If user data exists, use their name (or email if name is not available), otherwise use a fallback message
-  const userName = user?.name || "User"; // Display the user's name or fallback to "User"
-  const userEmail = user?.email || "No email available"; // Display the user's email or fallback to "No email available"
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = await getAccessTokenSilently(); // Get the access token
+        const res = await fetch("http://localhost:5000/api/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const data = await res.json(); // Parse the user data
+        setUserInfo(data); // Set the user data in state
+      } catch (err) {
+        console.error("Auth fetch failed:", err);
+      }
+    };
+
+    if (isAuthenticated) {
+      fetchUser(); // Fetch user data if authenticated
+    }
+  }, [getAccessTokenSilently, isAuthenticated]);
+
+  // If no user info is loaded yet, display a loading message
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
+
+  // Use the name from the backend if available, otherwise fallback to email
+  const userName = userInfo?.name || userInfo?.email || "User";
 
   return (
     <div className="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700 text-white">
