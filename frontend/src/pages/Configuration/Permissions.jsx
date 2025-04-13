@@ -17,7 +17,7 @@ const initialRoles = ["Admin", "Dealer", "Operations Analyst", "Marketing Office
 const Permissions = () => {
   const { language } = useLanguage();
   const { user } = useAuth0();
-  const isAdmin = user?.email === "test4@test4.com";
+  const isAdmin = user?.email === "minas2710@gmail.com";
 
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState(initialRoles);
