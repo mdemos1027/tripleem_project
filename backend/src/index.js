@@ -18,6 +18,13 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log("🔐 After checkJwt, req.auth:", req.auth); // <-- Debugging line
+  console.log('🔎 Incoming request:', req.method, req.url);
+  console.log('🔐 Authorization header:', req.headers.authorization);
+  next();
+});
+
 app.use('/api', userRoutes);               // ✅ includes /api/me and /api/users/*
 app.use('/api/invite', inviteRoutes);      // 🧾 Admin invites new users
 
