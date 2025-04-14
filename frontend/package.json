@@ -13,6 +13,7 @@
     "@auth0/auth0-react": "^2.3.0",
     "auth0-js": "^9.28.0",
     "i18next": "^24.2.3",
+    "powerbi-client": "^2.23.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.1",
