@@ -6,6 +6,7 @@ import { useLanguage } from "../context/LanguageContext"; // Import language con
 import WorldFlag from "react-world-flags";  // Import the flag component
 import { translations } from "../translations"; // Import translations
 
+
 const Topbar = ({
   breadcrumbRef,
   breadcrumb,
@@ -128,15 +129,23 @@ const Topbar = ({
           </div>
 
           <div className="w-48 flex justify-end ml-auto relative">
-            <button
-              onClick={() => setIsUserBoxOpen(!isUserBoxOpen)}
-              className="flex items-center gap-3 text-sm text-gray-300 hover:text-white focus:outline-none px-3 py-1 rounded shadow-none border-none"
-              style={{ backgroundColor: "var(--color-topbar)" }}
-            >
-              <FaUser />
-              {isAuthenticated && user ? user.name : "Guest User"}
-              {isUserBoxOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </button>
+          <button
+  onClick={() => setIsUserBoxOpen(!isUserBoxOpen)}
+  className="flex items-center gap-3 text-sm text-gray-300 hover:text-white focus:outline-none px-0 py-1 rounded shadow-none border-none"
+  style={{ backgroundColor: "var(--color-topbar)", height: "3rem" }} // Increased height
+>
+  <FaUser />
+  {isAuthenticated && localUser.username ? (
+    <div className="flex flex-col ml-1 justify-center"> {/* Flexbox for stacking email and username vertically */}
+      <div className="text-sm text-base mt-4">{localUser.username}</div> {/* Username larger */}
+      <div className="text-xs text-green-300">{localUser.email}</div> {/* Email smaller, green, with margin-top */}
+    </div>
+  ) : (
+    "Guest User"
+  )}
+  {isUserBoxOpen ? <FaChevronUp /> : <FaChevronDown />}
+</button>
+
 
             {isUserBoxOpen && (
               <div
@@ -153,9 +162,9 @@ const Topbar = ({
                   {/* Translated Billing Menu Item */}
                   <UserMenuItem icon={<FaCreditCard />} text={getTranslatedLabel("billing")} />
 
-                  {localUser.email && <UserInfo label="Email" value={localUser.email} />}
+                  {/* {localUser.email && <UserInfo label="Email" value={localUser.email} />}
                   {localUser.username && <UserInfo label="Username" value={localUser.username} color="text-green-300" />}
-                  {localUser.role && <UserInfo label="Role" value={localUser.role} />}
+                  {localUser.role && <UserInfo label="Role" value={localUser.role} />} */}
 
                   {/* Logout Button */}
                   <div
@@ -192,7 +201,7 @@ const Topbar = ({
 
         <div
           className="flex-1 pr-4 transition-all duration-10 relative"
-          style={{ paddingLeft: isSidebarCollapsed ? "3rem" : "15rem" }}
+          style={{ paddingLeft: isSidebarCollapsed ? "3rem" : "16rem" }}
         >
           <span ref={breadcrumbRef} className="text-white text-lg font-small truncate">
             {breadcrumb || "Dashboard"}
@@ -239,5 +248,3 @@ const UserInfo = ({ label, value, color = "text-gray-300" }) => (
 );
 
 export default Topbar;
-
-/* test */

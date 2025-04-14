@@ -4,44 +4,52 @@ import { useEffect, useState } from "react";
 
 const Login = () => {
   // Auth0 hooks
-  const { loginWithRedirect, isAuthenticated, isLoading, error, getIdTokenClaims } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, isLoading, error, getAccessTokenSilently } = useAuth0();
 
   // State to manage roles and loading state
   const [roles, setRoles] = useState([]);
   const [isRedirecting, setIsRedirecting] = useState(false);
 
-  
   // If user is already authenticated, fetch roles and redirect
   useEffect(() => {
     console.log("=== DEBUG START ===");
     if (isAuthenticated) {
-      const checkRoles = async () => {
+      const fetchRolesFromDB = async () => {
         try {
-          const tokenClaims = await getIdTokenClaims();
-          console.log("FULL TOKEN CLAIMS:", tokenClaims); // Debug
-          console.log("=== DEBUG START ===");
-          console.log("ALL TOKEN CLAIMS:", JSON.stringify(tokenClaims, null, 2)); // Full token dump
-          console.log("USER OBJECT:", JSON.stringify(user, null, 2)); // Auth0 user object
-          console.log("=== DEBUG END ===");
+          // Get the access token for the API call
+          const token = await getAccessTokenSilently();
           
-          // Check BOTH possible namespace formats
-          const roles = tokenClaims['https://tripleem/roles'] ||  [];
+          // Fetch user roles from the backend
+          const res = await fetch("http://localhost:5000/api/me", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!res.ok) {
+            throw new Error("Failed to fetch user roles from the backend");
+          }
+
+          const data = await res.json();
+          console.log("User data from DB:", data);
           
-          console.log("YOUR ROLES:", roles); // Verify here
-          setRoles(roles);
-          
-          if (roles.length > 0) {
-            localStorage.setItem('userRoles', JSON.stringify(roles));
+          // Assuming roles are returned in 'data.role' (or similar)
+          const userRoles = data?.role ? [data.role] : []; // Adjust according to your API response structure
+          setRoles(userRoles);
+
+          // Save the roles in localStorage
+          if (userRoles.length > 0) {
+            localStorage.setItem('userRoles', JSON.stringify(userRoles));
             setIsRedirecting(true);
           }
         } catch (err) {
-          console.error("Failed to get roles:", err);
+          console.error("Failed to fetch roles from the backend:", err);
         }
       };
-      
-      checkRoles();
+
+      fetchRolesFromDB();
     }
-  }, [isAuthenticated, getIdTokenClaims]);
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   // Redirect after roles are fetched
   useEffect(() => {
