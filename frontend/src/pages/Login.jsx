@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { appConfig } from "../config/appConfig";
 import { useEffect, useState } from "react";
+import logo from '../assets/Logo.png';
 
 const Login = () => {
   // Auth0 hooks
@@ -63,9 +64,9 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-[#1d2127] text-white">
       <div className="bg-[#2f343f] p-8 w-[400px] rounded shadow text-center">
         <img
-          src={appConfig.logoUrl}
+          src={logo}
           alt={appConfig.appName}
-          className="h-12 mb-6 mx-auto"
+          className="h-16 mb-6 mx-auto"
         />
 
         {/* Display any Auth0 login errors, if they occur */}
