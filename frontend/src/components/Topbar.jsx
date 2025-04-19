@@ -124,11 +124,11 @@ const Topbar = ({
                     <div
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer bg-gray-800 text-gray-300 hover:bg-blue-600 hover:text-white transition"
+                      className="flex items-center gap-2 px-1 py-2 rounded cursor-pointer bg-gray-800 text-gray-300 text-md hover:bg-blue-600 hover:text-white transition"
                     >
                       <WorldFlag
                         code={lang.flag}
-                        style={{ width: "20px", marginRight: "8px" }}
+                        style={{ width: "20px", marginRight: "11px" }}
                       />
                       <span>{lang.label}</span>
                     </div>
