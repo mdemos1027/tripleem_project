@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useLanguage } from "../context/LanguageContext"; // Import language context
 import WorldFlag from "react-world-flags";  // Import the flag component
 import { translations } from "../translations"; // Import translations
+import logo from '../assets/Logo.png';
 
 
 const Topbar = ({
@@ -87,8 +88,17 @@ const Topbar = ({
           backgroundColor: "var(--color-topbar)"
         }}
       >
-        <a href="/">
-          <img src={appConfig.logoUrl} alt={appConfig.appName} className="h-10" />
+        <a href="/" className="overflow" style={{ width: "3rem", height: "auto" }}>
+          <img
+            src={logo}
+            alt={appConfig.appName}
+            className="h-12 object-contain"
+            style={{
+              transform: "scale(1.4)", // slightly zoom in
+              marginLeft: "-32px", // shift left a bit
+              marginRight: "-4px" // shift right a bit
+            }}
+          />
         </a>
 
         <div className="w-auto flex items-center space-x-1">

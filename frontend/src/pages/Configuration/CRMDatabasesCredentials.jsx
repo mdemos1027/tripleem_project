@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useLanguage } from "../../context/LanguageContext";
-import { translations } from "../../translations";
+import { useLanguage } from "../../context/LanguageContext"; // Import language context
+import { translations } from "../../translations"; // Import translations
 
 const CRMDatabasesCredentials = () => {
   const { language } = useLanguage();
@@ -12,30 +12,33 @@ const CRMDatabasesCredentials = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!host || !username || !password || !database) {
-      setError(translations[language].fieldsRequired);
+      setError(translations[language].fieldsRequired); // Show error if any field is missing
       setSuccessMessage("");
       return;
     }
 
-    setSuccessMessage(translations[language].credentialsSaved);
+    setSuccessMessage(translations[language].credentialsSaved); // Show success message on successful submission
     console.log("Credentials Submitted:", { host, username, password, database });
-    setError("");
+    setError(""); // Reset error message after successful submission
   };
 
   return (
     <div className="p-6 bg-gray-800 rounded-xl shadow-lg border border-gray-700">
       <h2 className="text-xl font-semibold mb-4">{translations[language].crmCredentials}</h2>
 
+      {/* Error message */}
       {error && (
         <div className="mb-4 p-4 text-sm text-red-500 bg-red-900 rounded">
           {error}
         </div>
       )}
 
+      {/* Success message */}
       {successMessage && (
         <div className="mb-4 p-4 text-sm text-green-500 bg-green-900 rounded">
           {successMessage}
@@ -43,6 +46,7 @@ const CRMDatabasesCredentials = () => {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Host input */}
         <div>
           <label className="block text-sm text-white mb-1">{translations[language].host}</label>
           <input
@@ -54,6 +58,7 @@ const CRMDatabasesCredentials = () => {
           />
         </div>
 
+        {/* Username input */}
         <div>
           <label className="block text-sm text-white mb-1">{translations[language].username}</label>
           <input
@@ -65,6 +70,7 @@ const CRMDatabasesCredentials = () => {
           />
         </div>
 
+        {/* Password input */}
         <div>
           <label className="block text-sm text-white mb-1">{translations[language].password}</label>
           <input
@@ -76,6 +82,7 @@ const CRMDatabasesCredentials = () => {
           />
         </div>
 
+        {/* Database input */}
         <div>
           <label className="block text-sm text-white mb-1">{translations[language].database}</label>
           <input
@@ -87,6 +94,7 @@ const CRMDatabasesCredentials = () => {
           />
         </div>
 
+        {/* Submit button */}
         <div className="mt-4">
           <button
             type="submit"

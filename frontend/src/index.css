@@ -3,9 +3,9 @@
   --sidebar-width: 256px;
   --sidebar-expanded-width: 256px;
   --sidebar-collapsed-width: 48px;
-  --color-selector: #1a84fe;
+  --color-selector: #1a84fe;  /* #1a84fe */
   --color-topbar: #121228  ;
-  --color-secondbar: #1c0907;
+  --color-secondbar: #1c0907; /* #1c0907 */
   --color-sidebar: #0a1634;
 }
 
